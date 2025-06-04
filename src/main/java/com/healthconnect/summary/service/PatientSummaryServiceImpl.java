@@ -3,8 +3,12 @@ package com.healthconnect.summary.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.healthconnect.summary.dto.*;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +31,9 @@ public class PatientSummaryServiceImpl implements PatientSummaryService {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     @Override
+    @Cacheable(value = "patientSummary", key = "#patientId")
+    @CircuitBreaker(name = "patientSummaryCB", fallbackMethod = "fallbackPatientHealthSummary")
+    @Retry(name = "patientSummaryRetry")
     public PatientHealthSummaryResponse getPatientHealthSummary(String patientId) {
         List<RecentEncounterDto> recentEncounters = new ArrayList<>();
         List<ActiveMedicationDto> activeMedications = new ArrayList<>();
@@ -263,6 +270,18 @@ public class PatientSummaryServiceImpl implements PatientSummaryService {
                 .criticalAllergies(criticalAllergies)
                 .upcomingAppointments(upcomingAppointments)
                 .errors(errors)
+                .build();
+    }
+
+    public PatientHealthSummaryResponse fallbackPatientHealthSummary(String patientId, Throwable t) {
+        log.error("Fallback triggered for patient summary: {}", patientId, t);
+        return PatientHealthSummaryResponse.builder()
+                .recentEncounters(List.of())
+                .activeMedications(List.of())
+                .criticalAllergies(List.of())
+                .upcomingAppointments(List.of())
+                .errors(List.of(
+                        ErrorDto.builder().code("SUMMARY_FALLBACK").message("Service temporarily unavailable").build()))
                 .build();
     }
 }

@@ -1,0 +1,135 @@
+openapi: 3.0.1
+info:
+  title: HealthConnect Patient Health Summary API
+  version: 1.0.0
+  description: |
+    API for aggregating and synthesizing patient health summary data from Millennium Platform APIs.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/patients/{patientId}/summary:
+    get:
+      summary: Get Patient Health Summary
+      description: Returns a synthesized health summary for the given patient.
+      tags:
+        - Patient Health Summary
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the patient.
+      responses:
+        "200":
+          description: Patient summary returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientHealthSummaryResponse"
+        "400":
+          description: Invalid patient ID supplied.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Patient not found or no data available.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    PatientHealthSummaryResponse:
+      type: object
+      properties:
+        recentEncounters:
+          type: array
+          items:
+            $ref: "#/components/schemas/RecentEncounterDto"
+        activeMedications:
+          type: array
+          items:
+            $ref: "#/components/schemas/ActiveMedicationDto"
+        criticalAllergies:
+          type: array
+          items:
+            $ref: "#/components/schemas/CriticalAllergyDto"
+        upcomingAppointments:
+          type: array
+          items:
+            $ref: "#/components/schemas/UpcomingAppointmentDto"
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ErrorDto"
+    RecentEncounterDto:
+      type: object
+      properties:
+        encounterId:
+          type: string
+        date:
+          type: string
+          format: date-time
+        reasonForVisit:
+          type: string
+        primaryDiagnosis:
+          type: string
+        primaryCareProvider:
+          type: string
+    ActiveMedicationDto:
+      type: object
+      properties:
+        medicationName:
+          type: string
+        dosage:
+          type: string
+        route:
+          type: string
+        startDate:
+          type: string
+          format: date
+    CriticalAllergyDto:
+      type: object
+      properties:
+        allergenName:
+          type: string
+        reaction:
+          type: string
+        severity:
+          type: string
+    UpcomingAppointmentDto:
+      type: object
+      properties:
+        appointmentId:
+          type: string
+        dateTime:
+          type: string
+          format: date-time
+        type:
+          type: string
+        provider:
+          type: string
+        location:
+          type: string
+    ErrorDto:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ErrorDto"

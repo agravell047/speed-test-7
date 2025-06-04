@@ -1,6 +1,10 @@
 spring:
   profiles:
     active: default
+  cache:
+    type: simple
+  main:
+    allow-bean-definition-overriding: true
 
 logging:
   level:
