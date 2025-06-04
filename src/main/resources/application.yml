@@ -5,3 +5,14 @@ spring:
 logging:
   level:
     root: INFO
+
+healthconnect:
+  fhir:
+    base-url: "https://fhir-open.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d"
+    appointment-path: "/Appointment"
+    encounter-path: "/Encounter"
+    allergy-path: "/AllergyIntolerance"
+    medication-dispense-path: "/MedicationDispense"
+    timeout-ms: 5000
+    retry-attempts: 2
+    cache-ttl-minutes: 5

@@ -1,16 +1,31 @@
 {
   "info": {
+    "_postman_id": "b7e2e2c2-1c2a-4e2a-9e2a-2e2a2e2a2e2a",
     "name": "HealthConnect Summary API",
     "description": "Postman collection for testing the HealthConnect Summary API endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "version": "1.0.0"
   },
   "item": [
     {
       "name": "Heartbeat",
-      "item": [
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/heartbeat",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "heartbeat"
+          ]
+        }
+      },
+      "response": [
         {
-          "name": "Get Heartbeat Status",
-          "request": {
+          "name": "Heartbeat Success",
+          "originalRequest": {
             "method": "GET",
             "header": [],
             "url": {
@@ -23,17 +38,72 @@
               ]
             }
           },
-          "response": [
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"status\": \"ok\"\n}",
+          "header": [
             {
-              "status": "OK",
-              "code": 200,
-              "body": "{\n  \"status\": \"ok\"\n}",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Get Patient Health Summary",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/patients/12345/summary",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "patients",
+            "12345",
+            "summary"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Patient Health Summary Success",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/12345/summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "patients",
+                "12345",
+                "summary"
               ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"recentEncounters\": [\n    {\n      \"encounterId\": \"enc-001\",\n      \"date\": \"2025-05-27T09:00:00Z\",\n      \"reasonForVisit\": \"Annual Checkup\",\n      \"primaryDiagnosis\": \"Hypertension\",\n      \"primaryCareProvider\": \"Dr. Jane Smith\"\n    }\n  ],\n  \"activeMedications\": [\n    {\n      \"medicationName\": \"Lisinopril\",\n      \"dosage\": \"10mg\",\n      \"route\": \"Oral\",\n      \"startDate\": \"2024-12-01\"\n    }\n  ],\n  \"criticalAllergies\": [\n    {\n      \"allergenName\": \"Penicillin\",\n      \"reaction\": \"Anaphylaxis\",\n      \"severity\": \"Critical\"\n    }\n  ],\n  \"upcomingAppointments\": [\n    {\n      \"appointmentId\": \"A9876\",\n      \"dateTime\": \"2025-06-01T14:00:00Z\",\n      \"type\": \"Follow-up\",\n      \"provider\": \"Dr. John Doe\",\n      \"location\": \"Clinic A\"\n    }\n  ],\n  \"errors\": []\n}",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
             }
           ]
         }
