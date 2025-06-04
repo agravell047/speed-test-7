@@ -1,0 +1,18 @@
+{
+    "name": "SummaryController GET /api/patients/{patientId}/summary availability",
+    "type": "metric alert",
+    "query": "avg(last_5m):avg:healthconnect.summary.api.patients.summary.http_response{status:2xx} by {service} < 1",
+    "message": "Alert: The /api/patients/{patientId}/summary endpoint is unavailable or returning errors.",
+    "tags": [
+        "service:healthconnect-summary",
+        "endpoint:summary",
+        "env:prod"
+    ],
+    "options": {
+        "notify_no_data": true,
+        "no_data_timeframe": 10,
+        "thresholds": {
+            "critical": 1
+        }
+    }
+}
