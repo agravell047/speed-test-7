@@ -14,6 +14,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/heartbeat", "/actuator/health").permitAll()
+                        .requestMatchers("/api/patients/*/summary").permitAll() // Allow summary endpoint for now
                         .anyRequest().authenticated())
                 .httpBasic(httpBasic -> {
                 });

@@ -1,0 +1,338 @@
+{
+  "collection": {
+    "item": [
+      {
+        "id": "c0d26209-97f0-4021-9834-3e3aea623968",
+        "name": "Heartbeat",
+        "item": [
+          {
+            "id": "b3fa11d7-d664-4919-9087-f97b8ca82d12",
+            "name": "Get Heartbeat Status",
+            "request": {
+              "url": {
+                "path": [
+                  "heartbeat"
+                ],
+                "host": [
+                  "{{baseUrl}}"
+                ],
+                "query": [],
+                "variable": []
+              },
+              "method": "GET"
+            },
+            "response": [
+              {
+                "id": "d3949fd5-bb65-4741-897c-a31a36edda63",
+                "status": "OK",
+                "code": 200,
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": "{\n  \"status\": \"ok\"\n}",
+                "cookie": []
+              }
+            ],
+            "event": []
+          }
+        ],
+        "event": []
+      }
+    ],
+    "event": [],
+    "variable": [
+      {
+        "type": "any",
+        "value": "http://localhost:8080",
+        "key": "baseUrl"
+      }
+    ],
+    "info": {
+      "_postman_id": "27a2fa21-0175-4555-879a-5b7f34d0d0af",
+      "name": "HealthConnect Summary API",
+      "version": {
+        "raw": "1.0.0",
+        "major": 1,
+        "minor": 0,
+        "patch": 0,
+        "prerelease": [],
+        "build": [],
+        "string": "1.0.0"
+      },
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "description": {
+        "content": "Postman collection for testing the HealthConnect Summary API endpoints.",
+        "type": "text/plain"
+      }
+    }
+  },
+  "environment": {
+    "id": "5a5e3229-0e23-4a78-9611-746e0a5659cb",
+    "values": []
+  },
+  "globals": {
+    "id": "3ec8761a-e63f-48f6-a1b9-8279f4f8a35e",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 70,
+      "responseMin": 70,
+      "responseMax": 70,
+      "responseSd": 0,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1749001768384,
+      "completed": 1749001768468
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 1,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "4bdafdab-04de-4c85-9517-7e486393f418",
+          "httpRequestId": "07e74485-3bd0-4082-a442-5bb3c89dceff"
+        },
+        "item": {
+          "id": "b3fa11d7-d664-4919-9087-f97b8ca82d12",
+          "name": "Get Heartbeat Status",
+          "request": {
+            "url": {
+              "path": [
+                "heartbeat"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d3949fd5-bb65-4741-897c-a31a36edda63",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\"\n}",
+              "cookie": []
+            }
+          ],
+          "event": []
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "heartbeat"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "6aa500e4-897c-49e2-b9b5-46e5ab69317b",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "cee39935-6347-46d3-a0f8-443f36b1e9de",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Vary",
+              "value": "Access-Control-Request-Method"
+            },
+            {
+              "key": "Vary",
+              "value": "Access-Control-Request-Headers"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 04 Jun 2025 01:49:28 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              111,
+              107,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 70,
+          "responseSize": 15
+        },
+        "id": "b3fa11d7-d664-4919-9087-f97b8ca82d12"
+      }
+    ],
+    "transfers": {
+      "responseTotal": 15
+    },
+    "failures": [],
+    "error": null
+  }
+}
