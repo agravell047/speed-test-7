@@ -1,0 +1,49 @@
+{
+  "info": {
+    "name": "HealthConnect Summary API",
+    "description": "Postman collection for testing the HealthConnect Summary API endpoints.",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Heartbeat",
+      "item": [
+        {
+          "name": "Get Heartbeat Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/heartbeat",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "heartbeat"
+              ]
+            }
+          },
+          "response": [
+            {
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"status\": \"ok\"\n}",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+# Compiled class files
+/target/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+/.idea/
+*.iml
+*.ipr
+*.iws
+/.project
+/.classpath
+/.settings/
+
+# Maven
+.mvn/
+
+# VSCode
+.vscode/
+
+# Build output
+/build/
+
+# Test reports
+/test-output/
+
+# Local environment
+.env
+
+# Mac system files
+.AppleDouble
+.LSOverride
+
+# Windows system files
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux system files
+*~
+
+# Exclude nothing from documentation, monitoring, or postman folders
+!datadog/
+!docs/
+!postman/
+!prompt-history/

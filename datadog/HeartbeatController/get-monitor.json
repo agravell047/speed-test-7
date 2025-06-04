@@ -1,0 +1,25 @@
+{
+  "name": "HeartbeatController Monitor",
+  "type": "metric alert",
+  "query": "avg(last_1m):avg:myapp.heartbeat.response_time{*} > 100",
+  "message": "Heartbeat response time is too high!",
+  "tags": ["heartbeat", "controller"],
+  "options": {
+    "thresholds": {
+      "critical": 100,
+      "warning": 80
+    },
+    "notify_audit": false,
+    "locked": false,
+    "timeout_h": 0,
+    "include_tags": true,
+    "new_host_delay": 300,
+    "require_full_window": true,
+    "no_data_timeframe": 2,
+    "renotify_interval": 60,
+    "escalation_message": "",
+    "evaluation_delay": 300,
+    "notify_no_data": false,
+    "notify": ["team@example.com"]
+  }
+}
