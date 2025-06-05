@@ -70,6 +70,16 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ErrorDto"
+        appointmentsError:
+          $ref: "#/components/schemas/SectionErrorDto"
+        encountersError:
+          $ref: "#/components/schemas/SectionErrorDto"
+        allergiesError:
+          $ref: "#/components/schemas/SectionErrorDto"
+        medicationsError:
+          $ref: "#/components/schemas/SectionErrorDto"
+        labsError:
+          $ref: "#/components/schemas/SectionErrorDto"
     RecentEncounterDto:
       type: object
       properties:
@@ -84,6 +94,24 @@ components:
           type: string
         primaryCareProvider:
           type: string
+        medications:
+          type: array
+          items:
+            $ref: "#/components/schemas/ActiveMedicationDto"
+        labResults:
+          type: array
+          items:
+            $ref: "#/components/schemas/LabResultDto"
+        followUpAppointments:
+          type: array
+          items:
+            $ref: "#/components/schemas/UpcomingAppointmentDto"
+        medicationsError:
+          $ref: "#/components/schemas/SectionErrorDto"
+        labsError:
+          $ref: "#/components/schemas/SectionErrorDto"
+        followUpsError:
+          $ref: "#/components/schemas/SectionErrorDto"
     ActiveMedicationDto:
       type: object
       properties:
@@ -133,3 +161,26 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ErrorDto"
+    LabResultDto:
+      type: object
+      properties:
+        observationId:
+          type: string
+        testName:
+          type: string
+        value:
+          type: string
+        unit:
+          type: string
+        status:
+          type: string
+        effectiveDateTime:
+          type: string
+          format: date-time
+    SectionErrorDto:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string

@@ -32,4 +32,11 @@ public class PatientHealthSummaryResponse {
     @NotNull
     @Valid
     private List<ErrorDto> errors;
+
+    // Section-specific error fields
+    private SectionErrorDto appointmentsError;
+    private SectionErrorDto encountersError;
+    private SectionErrorDto allergiesError;
+    private SectionErrorDto medicationsError;
+    private SectionErrorDto labsError;
 }

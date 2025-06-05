@@ -99,7 +99,40 @@
           },
           "status": "OK",
           "code": 200,
-          "body": "{\n  \"recentEncounters\": [\n    {\n      \"encounterId\": \"enc-001\",\n      \"date\": \"2025-05-27T09:00:00Z\",\n      \"reasonForVisit\": \"Annual Checkup\",\n      \"primaryDiagnosis\": \"Hypertension\",\n      \"primaryCareProvider\": \"Dr. Jane Smith\"\n    }\n  ],\n  \"activeMedications\": [\n    {\n      \"medicationName\": \"Lisinopril\",\n      \"dosage\": \"10mg\",\n      \"route\": \"Oral\",\n      \"startDate\": \"2024-12-01\"\n    }\n  ],\n  \"criticalAllergies\": [\n    {\n      \"allergenName\": \"Penicillin\",\n      \"reaction\": \"Anaphylaxis\",\n      \"severity\": \"Critical\"\n    }\n  ],\n  \"upcomingAppointments\": [\n    {\n      \"appointmentId\": \"A9876\",\n      \"dateTime\": \"2025-06-01T14:00:00Z\",\n      \"type\": \"Follow-up\",\n      \"provider\": \"Dr. John Doe\",\n      \"location\": \"Clinic A\"\n    }\n  ],\n  \"errors\": []\n}",
+          "body": "{\n  \"recentEncounters\": [\n    {\n      \"encounterId\": \"enc-001\",\n      \"date\": \"2025-05-27T09:00:00Z\",\n      \"reasonForVisit\": \"Annual Checkup\",\n      \"primaryDiagnosis\": \"Hypertension\",\n      \"primaryCareProvider\": \"Dr. Jane Smith\",\n      \"medications\": [{\n        \"medicationName\": \"Lisinopril\",\n        \"dosage\": \"10mg\",\n        \"route\": \"Oral\",\n        \"startDate\": \"2024-12-01\"\n      }],\n      \"labResults\": [{\n        \"observationId\": \"obs-001\",\n        \"testName\": \"Hemoglobin\",\n        \"value\": \"13.5\",\n        \"unit\": \"g/dL\",\n        \"status\": \"final\",\n        \"effectiveDateTime\": \"2025-05-27T09:30:00Z\"\n      }],\n      \"followUpAppointments\": [{\n        \"appointmentId\": \"A9877\",\n        \"dateTime\": \"2025-06-10T10:00:00Z\",\n        \"type\": \"Lab Review\",\n        \"provider\": \"Dr. Jane Smith\",\n        \"location\": \"Clinic A\"\n      }],\n      \"medicationsError\": null,\n      \"labsError\": null,\n      \"followUpsError\": null\n    }\n  ],\n  \"activeMedications\": [\n    {\n      \"medicationName\": \"Lisinopril\",\n      \"dosage\": \"10mg\",\n      \"route\": \"Oral\",\n      \"startDate\": \"2024-12-01\"\n    }\n  ],\n  \"criticalAllergies\": [\n    {\n      \"allergenName\": \"Penicillin\",\n      \"reaction\": \"Anaphylaxis\",\n      \"severity\": \"Critical\"\n    }\n  ],\n  \"upcomingAppointments\": [\n    {\n      \"appointmentId\": \"A9876\",\n      \"dateTime\": \"2025-06-01T14:00:00Z\",\n      \"type\": \"Follow-up\",\n      \"provider\": \"Dr. John Doe\",\n      \"location\": \"Clinic A\"\n    }\n  ],\n  \"errors\": [],\n  \"appointmentsError\": null,\n  \"encountersError\": null,\n  \"allergiesError\": null,\n  \"medicationsError\": null,\n  \"labsError\": null\n}",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        {
+          "name": "Patient Health Summary Section Error",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patients/12345/summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "patients",
+                "12345",
+                "summary"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"recentEncounters\": [],\n  \"activeMedications\": [],\n  \"criticalAllergies\": [],\n  \"upcomingAppointments\": [],\n  \"errors\": [],\n  \"appointmentsError\": {\n    \"code\": \"APPOINTMENT_API_ERROR\",\n    \"message\": \"Failed to fetch appointments\"\n  },\n  \"encountersError\": null,\n  \"allergiesError\": null,\n  \"medicationsError\": null,\n  \"labsError\": null\n}",
           "header": [
             {
               "key": "Content-Type",
