@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -181,7 +183,8 @@ class PatientSummaryServiceImplTest {
 
     @Test
     void fallbackPatientHealthSummary_ReturnsFallbackResponse() {
-        PatientHealthSummaryResponse response = patientSummaryService.fallbackPatientHealthSummary("id", new RuntimeException("fail"));
+        PatientHealthSummaryResponse response = patientSummaryService.fallbackPatientHealthSummary("id",
+                new RuntimeException("fail"));
         assertNotNull(response);
         assertTrue(response.getRecentEncounters().isEmpty());
         assertTrue(response.getActiveMedications().isEmpty());
@@ -189,5 +192,45 @@ class PatientSummaryServiceImplTest {
         assertTrue(response.getUpcomingAppointments().isEmpty());
         assertEquals(1, response.getErrors().size());
         assertEquals("SUMMARY_FALLBACK", response.getErrors().get(0).getCode());
+    }
+
+    @Test
+    void getPatientHealthSummary_SectionSpecificErrors_AreSet() {
+        PatientHealthSummaryResponse response = PatientHealthSummaryResponse.builder()
+                .appointmentsError(SectionErrorDto.builder().code("APPOINTMENT_API_ERROR")
+                        .message("Failed to fetch appointments").build())
+                .encountersError(SectionErrorDto.builder().code("ENCOUNTER_API_ERROR")
+                        .message("Failed to fetch encounters").build())
+                .allergiesError(SectionErrorDto.builder().code("ALLERGY_API_ERROR").message("Failed to fetch allergies")
+                        .build())
+                .medicationsError(SectionErrorDto.builder().code("MEDICATION_API_ERROR")
+                        .message("Failed to fetch medications").build())
+                .labsError(SectionErrorDto.builder().code("LAB_API_ERROR").message("Failed to fetch labs").build())
+                .build();
+        assertNotNull(response.getAppointmentsError());
+        assertNotNull(response.getEncountersError());
+        assertNotNull(response.getAllergiesError());
+        assertNotNull(response.getMedicationsError());
+        assertNotNull(response.getLabsError());
+    }
+
+    @Test
+    void getPatientHealthSummary_MapsLabResults() {
+        LabResultDto lab = LabResultDto.builder()
+                .observationId("obs-001")
+                .testName("Hemoglobin")
+                .value("13.5")
+                .unit("g/dL")
+                .status("final")
+                .effectiveDateTime("2025-05-27T09:30:00Z")
+                .build();
+        RecentEncounterDto encounter = RecentEncounterDto.builder()
+                .encounterId("enc-001")
+                .date("2025-05-27T09:00:00Z")
+                .reasonForVisit("Annual Checkup")
+                .labResults(List.of(lab))
+                .build();
+        assertEquals(1, encounter.getLabResults().size());
+        assertEquals("Hemoglobin", encounter.getLabResults().get(0).getTestName());
     }
 }
